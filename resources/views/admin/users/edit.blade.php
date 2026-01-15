@@ -45,6 +45,16 @@
 
                         <!-- Name -->
                         <div class="space-y-3">
+                            <label for="nik" class="block text-sm font-bold text-gray-800">NIK<span
+                                    class="text-red-500 ml-1">*</span></label>
+                            <input type="text" name="nik" id="nik" value="{{ old('nik', $user->nik) }}" inputmode="numeric"
+                                pattern="[0-9]{8,12}" minlength="8" maxlength="12" class=" block w-full pl-4 pr-4 py-4 border-2 border-gray-200 rounded-xl focus:ring-4
+                                        focus:ring-sky-100 focus:border-sky-500 transition-all duration-200 bg-gray-50
+                                        focus:bg-white text-gray-900 placeholder-gray-500"
+                                placeholder="Masukkan nama lengkap pengguna" required autocomplete="nik">
+                        </div>
+
+                        <div class="space-y-3">
                             <label for="name" class="block text-sm font-bold text-gray-800">Nama Lengkap <span
                                     class="text-red-500 ml-1">*</span></label>
                             <input type="text" name="name" id="name" value="{{ old('name', $user->name) }}"
@@ -73,8 +83,7 @@
                                 autocomplete="new-password">
                             <div
                                 class="bg-amber-50 border border-amber-200 rounded-lg p-3 text-xs text-amber-800 flex items-center gap-2">
-                                <svg class="w-4 h-4 text-amber-600" fill="none" stroke="currentColor"
-                                    viewBox="0 0 24 24">
+                                <svg class="w-4 h-4 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                                 </svg>
@@ -88,11 +97,9 @@
                             <label for="role" class="block text-sm font-bold text-gray-800">
                                 Role Pengguna <span class="text-red-500 ml-1">*</span>
                             </label>
-                            <select name="role" id="role"
-                                class="block w-full pl-4 pr-10 py-4 border-2 border-gray-200 rounded-xl 
-               focus:ring-4 focus:ring-sky-100 focus:border-sky-500 transition-all 
-               duration-200 bg-gray-50 focus:bg-white text-gray-900 cursor-pointer"
-                                required>
+                            <select name="role" id="role" class="block w-full pl-4 pr-10 py-4 border-2 border-gray-200 rounded-xl 
+                               focus:ring-4 focus:ring-sky-100 focus:border-sky-500 transition-all 
+                               duration-200 bg-gray-50 focus:bg-white text-gray-900 cursor-pointer" required>
                                 @php
                                     $currentRole = strtolower(old('role', $user->role));
                                 @endphp
@@ -118,8 +125,8 @@
                                     Update User
                                     <svg class="w-5 h-5 animate-spin hidden" id="updateSpinner" fill="none"
                                         viewBox="0 0 24 24">
-                                        <circle class="opacity-25" cx="12" cy="12" r="10"
-                                            stroke="currentColor" stroke-width="4"></circle>
+                                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
+                                            stroke-width="4"></circle>
                                         <path class="opacity-75" fill="currentColor"
                                             d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
                                         </path>
@@ -138,7 +145,7 @@
     </div>
 
     <script>
-        document.getElementById('userEditForm').addEventListener('submit', function() {
+        document.getElementById('userEditForm').addEventListener('submit', function () {
             const btn = document.getElementById('updateBtn');
             const spinner = document.getElementById('updateSpinner');
             btn.disabled = true;
