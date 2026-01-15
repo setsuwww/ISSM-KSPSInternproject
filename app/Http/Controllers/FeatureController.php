@@ -15,8 +15,13 @@ class FeatureController extends Controller
         $query = User::query();
 
         if ($search = $request->search) {
-            $query->where('name', 'like', "%{$search}%")
-                ->orWhere('email', 'like', "%{$search}%");
+            if ($search = $request->search) {
+                $query->where(function ($q) use ($search) {
+                    $q->where('nik', 'like', "%{$search}%")
+                        ->orWhere('name', 'like', "%{$search}%")
+                        ->orWhere('email', 'like', "%{$search}%");
+                });
+            }
         }
 
         $users = $query->latest()->get();
@@ -31,12 +36,17 @@ class FeatureController extends Controller
 
     public function store(Request $request)
     {
-        User::create($request->validate([
-            'name' => 'required',
-            'email' => 'required|email|unique:users',
-            'password' => 'required',
-            'role' => 'required',
-        ]));
+        $data = $request->validate([
+            'nik' => 'required|digits_between:8,12|unique:users,nik',
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|min:8',
+            'role' => 'required|in:Admin,Operator,User',
+        ]);
+
+        $data['password'] = bcrypt($data['password']);
+
+        User::create($data);
 
         return redirect()->route('admin.users.index')->with('success', 'User created');
     }
@@ -49,15 +59,14 @@ class FeatureController extends Controller
     public function update(Request $request, User $user)
     {
         $data = $request->validate([
-            'name' => 'required',
+            'nik' => 'required|digits_between:8,12|unique:users,nik,' . $user->id,
+            'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email,' . $user->id,
-            'password' => 'nullable',
-            'role' => 'required',
+            'password' => 'nullable|min:8',
+            'role' => 'required|in:Admin,Operator,User',
         ]);
 
-        if ($request->password) {
-            $data['password'] = bcrypt($request->password);
-        } else {
+        if (empty($data['password'])) {
             unset($data['password']);
         }
 

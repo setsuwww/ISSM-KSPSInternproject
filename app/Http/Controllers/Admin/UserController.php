@@ -20,7 +20,8 @@ class UserController extends Controller
         $query = User::with('shifts'); // Filter keyword (nama/email)
         if ($request->filled('search')) {
             $query->where(function ($q) use ($request) {
-                $q->where('name', 'like', '%' . $request->search . '%')
+                $q->where('nik', 'like', '%' . $request->search . '%')
+                    ->orWhere('name', 'like', '%' . $request->search . '%')
                     ->orWhere('email', 'like', '%' . $request->search . '%');
             });
         }
@@ -41,7 +42,7 @@ class UserController extends Controller
         $users = $query->orderBy('name')
             ->paginate(10)
             ->appends($request->query());
-        
+
         $shifts = Shift::orderBy('name')->pluck('name');
 
         if ($request->ajax()) {
@@ -90,21 +91,18 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'name'     => 'required',
-            'email'    => 'required|email|unique:users',
-            'password' => 'required|min:6',
-            'role'     => 'required|in:admin,operator,user'
+        $data = $request->validate([
+            'nik' => 'required|digits_between:8,12|unique:users,nik',
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|min:8',
+            'role' => 'required|in:admin,operator,user'
         ]);
 
-        $user = User::create([
-            'name'     => $request->name,
-            'email'    => $request->email,
-            'password' => Hash::make($request->password),
-            'role'     => $request->role,
-        ]);
+        $data['password'] = Hash::make($data['password']);
 
-        // Log admin user activity
+        $user = User::create($data);
+
         AdminUsersLog::log(
             'create',
             $user->id,
@@ -113,15 +111,18 @@ class UserController extends Controller
             $user->role,
             null,
             [
+                'nik' => $user->nik,
                 'name' => $user->name,
                 'email' => $user->email,
                 'role' => $user->role
             ],
             false,
-            "Membuat user baru: {$user->name} ({$user->role})"
+            "Membuat user baru: {$user->name} ({$user->nik})"
         );
 
-        return redirect()->route('admin.users.index')->with('success', 'User created.');
+        return redirect()
+            ->route('admin.users.index')
+            ->with('success', 'User created.');
     }
 
     public function edit(User $user)
@@ -131,40 +132,40 @@ class UserController extends Controller
 
     public function update(Request $request, User $user)
     {
-        // Validasi input
-        $request->validate([
+        $data = $request->validate([
+            'nik' => 'required|digits_between:8,12|unique:users,nik,' . $user->id,
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email,' . $user->id,
-            'password' => 'nullable|string|min:8',
+            'password' => 'nullable|min:8',
             'role' => 'required|in:admin,operator,user',
         ]);
 
-        // Store old values for logging
         $oldValues = [
+            'nik' => $user->nik,
             'name' => $user->name,
             'email' => $user->email,
-            'role' => $user->role
+            'role' => $user->role,
         ];
 
-        // Update data user
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->role = $request->role;
+        $user->nik = $data['nik'];
+        $user->name = $data['name'];
+        $user->email = $data['email'];
+        $user->role = $data['role'];
 
         $newValues = [
+            'nik' => $user->nik,
             'name' => $user->name,
             'email' => $user->email,
-            'role' => $user->role
+            'role' => $user->role,
         ];
 
-        if ($request->filled('password')) {
-            $user->password = Hash::make($request->password);
+        if (!empty($data['password'])) {
+            $user->password = Hash::make($data['password']);
             $newValues['password_changed'] = true;
         }
 
         $user->save();
 
-        // Log admin user activity
         AdminUsersLog::log(
             'update',
             $user->id,
@@ -173,13 +174,14 @@ class UserController extends Controller
             $user->role,
             $oldValues,
             $newValues,
-            $request->filled('password'),
-            "Mengubah data user: {$user->name}"
+            isset($newValues['password_changed']),
+            "Mengubah data user: {$user->name} ({$user->nik})"
         );
 
-        return redirect()->route('admin.users.index')->with('success', 'User berhasil diperbarui!');
+        return redirect()
+            ->route('admin.users.index')
+            ->with('success', 'User berhasil diperbarui!');
     }
-
 
     public function destroy(User $user)
     {
@@ -189,7 +191,7 @@ class UserController extends Controller
             'email' => $user->email,
             'role' => $user->role
         ];
-        
+
         $user->delete();
 
         // Log admin user activity
@@ -204,7 +206,7 @@ class UserController extends Controller
             false,
             "Menghapus user: {$userName}"
         );
-        
+
         return redirect()->route('admin.users.index')->with('success', 'User deleted.');
     }
 
