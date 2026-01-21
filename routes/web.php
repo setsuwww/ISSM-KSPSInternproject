@@ -27,7 +27,7 @@ Route::middleware(['auth', \App\Http\Middleware\CheckRole::class . ':Admin'])
 
         // Dashboard
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-        Route::resource('locations', AttendanceLocationsController::class);
+        Route::resource('attendance-locations', AttendanceLocationsController::class);
 
         // Users
         Route::resource('users', UserController::class);

@@ -16,7 +16,7 @@ class AttendanceLocationsController extends Controller
 
     public function create()
     {
-        return view('admin.attendace-locations.create');
+        return view('admin.attendance-locations.create');
     }
 
     public function store(Request $request)

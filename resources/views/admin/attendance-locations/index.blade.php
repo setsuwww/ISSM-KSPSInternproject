@@ -33,7 +33,7 @@
 
                 <div class="p-8">
                     <div class="flex justify-end mb-4">
-                        <a href="{{ route('admin.attendace-locations.create') }}"
+                        <a href="{{ route('admin.attendance-locations.create') }}"
                             class="bg-gradient-to-r from-sky-500 to-sky-600 hover:from-sky-600 hover:to-sky-700 text-white font-bold py-3 px-6 rounded-xl transition-all duration-200 transform hover:scale-[1.02] shadow-lg hover:shadow-xl">
                             <span class="flex items-center justify-center gap-2">
                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
