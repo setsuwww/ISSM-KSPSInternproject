@@ -1,21 +1,21 @@
 @extends('layouts.admin')
 
-@section('title', 'Detail Fungsi')
+@section('title', 'Detail Location')
 
 @section('content')
   <x-form>
-    <x-form-header header="Detail Fungsi" paragraph="Informasi fungsi" />
+    <x-form-header header="Detail Location" paragraph="Informasi location" />
 
     <div class="space-y-4 text-sm">
       <div>
-        <p class="text-gray-500">Nama Fungsi</p>
-        <p class="font-semibold text-gray-700">{{ $fungsis->jabatan }}</p>
+        <p class="text-gray-500">Nama Location</p>
+        <p class="font-semibold text-gray-700">{{ $locations->location }}</p>
       </div>
 
       <div>
         <p class="text-gray-500">Status</p>
         <p class="font-semibold text-gray-700">
-          {{ $fungsis->is_active ? 'Active' : 'Inactive' }}
+          {{ $locations->is_active ? 'Active' : 'Inactive' }}
         </p>
       </div>
     </div>
