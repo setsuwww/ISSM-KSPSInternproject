@@ -1,17 +1,17 @@
 @extends('layouts.admin')
 
-@section('title', 'Buat Fungsi')
+@section('title', 'Buat Locations')
 
 @section('content')
   <x-form>
-    <x-form-header header="Buat Fungsi" paragraph="Buat baru data fungsi" />
+    <x-form-header header="Buat Locations" paragraph="Buat baru data location" />
 
-    <form action="{{ route('admin.fungsis.store') }}" method="POST" class="space-y-6">
+    <form action="{{ route('admin.locations.store') }}" method="POST" class="space-y-6">
       @csrf
 
       <div>
-        <label class="font-semibold text-sm">Nama Fungsi</label>
-        <input name="fungsi" class="w-full mt-2 p-3 border rounded-lg" required>
+        <label class="font-semibold text-sm">Nama Locations</label>
+        <input name="location" class="w-full mt-2 p-3 border rounded-lg" required>
       </div>
 
       <div>
@@ -26,7 +26,7 @@
         <button class="bg-sky-600 text-white px-6 py-3 rounded-lg">
           Simpan
         </button>
-        <a href="{{ route('admin.fungsis.index') }}" class="px-6 py-3 rounded-lg border">
+        <a href="{{ route('admin.locations.index') }}" class="px-6 py-3 rounded-lg border">
           Batal
         </a>
       </div>
