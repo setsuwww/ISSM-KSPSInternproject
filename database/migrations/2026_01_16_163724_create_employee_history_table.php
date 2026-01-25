@@ -10,21 +10,33 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('employee_history', function (Blueprint $table) {
-            $table->bigIncrements('id');
+        Schema::create('employee_histories', function (Blueprint $table) {
+            $table->id();
 
-            $table->string('employee_nik');
-            $table->string('roles_id');
-            $table->string('locations_id');
-            $table->string('jabatans_id');
-            $table->string('fungsis_id');
+            $table->foreignId('employee_id')
+                ->constrained('employees')
+                ->cascadeOnDelete();
 
-            $table->string('tanggal_mulai_efektif', 25);
-            $table->string('tanggal_akhir_efektif', 25);
+            $table->foreignId('role_id')
+                ->constrained('roles');
+
+            $table->foreignId('location_id')
+                ->constrained('locations');
+
+            $table->foreignId('jabatan_id')
+                ->constrained('jabatans');
+
+            $table->foreignId('fungsi_id')
+                ->constrained('fungsis');
+
+            $table->date('tanggal_mulai_efektif');
+            $table->date('tanggal_akhir_efektif')->nullable();
 
             $table->boolean('current_flag')->default(true);
 
             $table->timestamps();
+
+            $table->index(['employee_id', 'current_flag']);
         });
     }
 

@@ -27,6 +27,26 @@
           </div>
       @endforeach
 
+      <div class="mb-5">
+  <label class="text-sm font-medium text-gray-700 mb-1 block">
+    Employee
+  </label>
+
+  <select
+    name="employee_id"
+    class="w-full rounded-lg border-gray-300 focus:border-black focus:ring-black"
+  >
+    <option value="">Pilih employee</option>
+    @foreach ($employees as $employee)
+      <option value="{{ $employee->id }}"
+        @selected(old('employee_id', $employeeHistory->employee_id ?? '') == $employee->id)>
+        {{ $employee->nik }} — {{ $employee->name }}
+      </option>
+    @endforeach
+  </select>
+</div>
+
+
       <div class="mb-3">
           <label class="form-label">Status Aktif</label>
             <select name="current_flag" class="form-select">

@@ -13,10 +13,10 @@ class EmployeeHistory extends Model
 
     protected $fillable = [
         'employee_nik',
-        'roles_id',
-        'locations_id',
-        'jabatans_id',
-        'fungsis_id',
+        'role_id',
+        'location_id',
+        'jabatan_id',
+        'fungsi_id',
         'tanggal_mulai_efektif',
         'tanggal_akhir_efektif',
         'current_flag',
@@ -25,4 +25,25 @@ class EmployeeHistory extends Model
     protected $casts = [
         'current_flag' => 'boolean',
     ];
+
+    public function employee()
+    {
+        return $this->belongsTo(Employee::class);
+    }
+    public function role()
+    {
+        return $this->belongsTo(Roles::class);
+    }
+    public function location()
+    {
+        return $this->belongsTo(Locations::class);
+    }
+    public function jabatan()
+    {
+        return $this->belongsTo(Jabatans::class);
+    }
+    public function fungsi()
+    {
+        return $this->belongsTo(Fungsis::class);
+    }
 }
