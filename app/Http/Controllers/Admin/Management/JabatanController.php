@@ -31,7 +31,7 @@ class JabatanController extends Controller
             'fungsi_id' => $request->fungsi_id,
         ]);
 
-        return back();
+        return redirect()->route('admin.management.index', ['tab' => 'jabatan']);
     }
 
     public function update(Jabatan $jabatan, Request $request)
@@ -44,7 +44,7 @@ class JabatanController extends Controller
             'jabatan' => $request->jabatan,
         ]);
 
-        return back();
+        return redirect()->route('admin.management.index', ['tab' => 'jabatan']);
     }
 
     public function bulkUpdate(Request $request)
@@ -62,12 +62,12 @@ class JabatanController extends Controller
                 ]);
         }
 
-        return back();
+        return redirect()->route('admin.management.index', ['tab' => 'jabatan']);
     }
 
     public function destroy(Jabatan $jabatan)
     {
         $jabatan->update(['is_active' => false]);
-        return back();
+        return redirect()->route('admin.management.index', ['tab' => 'jabatan']);
     }
 }

@@ -18,7 +18,7 @@ class FungsiController extends Controller
             'fungsi' => $request->fungsi,
         ]);
 
-        return back();
+        return redirect()->route('admin.management.index', ['tab' => 'fungsi']);
     }
 
     public function update(Fungsi $fungsi, Request $request)
@@ -31,7 +31,7 @@ class FungsiController extends Controller
             'fungsi' => $request->fungsi,
         ]);
 
-        return back();
+        return redirect()->route('admin.management.index', ['tab' => 'fungsi']);
     }
 
     public function bulkUpdate(Request $request)
@@ -49,7 +49,7 @@ class FungsiController extends Controller
                 ]);
         }
 
-        return back();
+        return redirect()->route('admin.management.index', ['tab' => 'fungsi']);
     }
 
     public function destroy(Fungsi $fungsi)
@@ -59,6 +59,6 @@ class FungsiController extends Controller
 
         $fungsi->update(['is_active' => false]);
 
-        return back();
+        return redirect()->route('admin.management.index', ['tab' => 'fungsi']);
     }
 }

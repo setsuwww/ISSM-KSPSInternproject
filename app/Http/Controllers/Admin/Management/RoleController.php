@@ -18,7 +18,7 @@ class RoleController extends Controller
             'role' => $request->role,
         ]);
 
-        return back();
+        return redirect()->route('admin.management.index', ['tab' => 'role']);
     }
 
     public function update(Role $role, Request $request)
@@ -31,7 +31,7 @@ class RoleController extends Controller
             'role' => $request->role,
         ]);
 
-        return back();
+        return redirect()->route('admin.management.index', ['tab' => 'role']);
     }
 
     public function bulkUpdate(Request $request)
@@ -49,12 +49,12 @@ class RoleController extends Controller
                 ]);
         }
 
-        return back();
+        return redirect()->route('admin.management.index', ['tab' => 'role']);
     }
 
     public function destroy(Role $role)
     {
         $role->update(['is_active' => false]);
-        return back();
+        return redirect()->route('admin.management.index', ['tab' => 'role']);
     }
 }
