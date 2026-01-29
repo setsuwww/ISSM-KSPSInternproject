@@ -49,6 +49,10 @@
       @include('admin.management.tabs.location')
       @break
 
+    @case('jabatan-fungsi')
+      @include('admin.management.tabs.jabatan-fungsi')
+      @break
+
     @default
       @include('admin.management.tabs.role')
   @endswitch
