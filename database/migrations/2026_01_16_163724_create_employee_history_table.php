@@ -18,16 +18,20 @@ return new class extends Migration {
                 ->cascadeOnDelete();
 
             $table->foreignId('role_id')
-                ->constrained('roles');
+                ->constrained('roles')
+                ->restrictOnDelete();
 
             $table->foreignId('location_id')
-                ->constrained('locations');
+                ->constrained('locations')
+                ->restrictOnDelete();
 
             $table->foreignId('jabatan_id')
-                ->constrained('jabatans');
+                ->constrained('jabatans')
+                ->restrictOnDelete();
 
             $table->foreignId('fungsi_id')
-                ->constrained('fungsis');
+                ->constrained('fungsis')
+                ->restrictOnDelete();
 
             $table->date('tanggal_mulai_efektif');
             $table->date('tanggal_akhir_efektif')->nullable();
@@ -36,6 +40,7 @@ return new class extends Migration {
 
             $table->timestamps();
 
+            // Optimasi query utama
             $table->index(['employee_id', 'current_flag']);
         });
     }

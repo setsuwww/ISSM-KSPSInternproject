@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\Management\JabatanFungsiController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\AuthController;
@@ -88,6 +89,12 @@ Route::middleware(['auth', \App\Http\Middleware\CheckRole::class . ':Admin'])
                 ->name('locations.update');
             Route::delete('/locations/{location}', [LocationController::class, 'destroy'])
                 ->name('locations.destroy');
+        });
+
+        Route::prefix('management/jabatan-fungsi')->name('management.jabatan-fungsi.')->group(function () {
+            Route::get('/', [JabatanFungsiController::class, 'index'])->name('index');
+            Route::get('{jabatan}/edit', [JabatanFungsiController::class, 'edit'])->name('edit');
+            Route::put('{jabatan}', [JabatanFungsiController::class, 'update'])->name('update');
         });
 
         // Shifts

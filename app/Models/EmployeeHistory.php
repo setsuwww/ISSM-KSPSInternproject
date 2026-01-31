@@ -12,7 +12,7 @@ class EmployeeHistory extends Model
     protected $table = 'employee_history';
 
     protected $fillable = [
-        'employee_nik',
+        'employee_id',
         'role_id',
         'location_id',
         'jabatan_id',
@@ -32,18 +32,18 @@ class EmployeeHistory extends Model
     }
     public function role()
     {
-        return $this->belongsTo(Roles::class);
+        return $this->belongsTo(Role::class);
     }
     public function location()
     {
-        return $this->belongsTo(Locations::class);
+        return $this->belongsTo(Location::class);
     }
     public function jabatan()
     {
-        return $this->belongsTo(Jabatans::class);
+        return $this->belongsTo(Jabatan::class);
     }
     public function fungsi()
     {
-        return $this->belongsTo(Fungsis::class);
+        return $this->belongsTo(Fungsi::class);
     }
 }

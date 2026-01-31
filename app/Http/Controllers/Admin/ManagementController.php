@@ -15,8 +15,8 @@ class ManagementController extends Controller
         return view('admin.management.index', [
             'roles' => Role::where('is_active', true)->get(),
             'locations' => Location::where('is_active', true)->get(),
-            'fungsis' => Fungsi::where('is_active', true)->with('jabatans')->get(),
-            'jabatans' => Jabatan::where('is_active', true)->with('fungsi')->get(),
+            'fungsis' => Fungsi::where('is_active', true)->with('jabatan')->get(),
+            'jabatans' => Jabatan::where('is_active', true)->with('fungsis')->get(),
         ]);
     }
 }

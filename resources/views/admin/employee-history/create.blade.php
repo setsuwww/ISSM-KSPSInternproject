@@ -23,13 +23,17 @@
             <label class="block text-sm font-medium text-gray-700 mb-1">
               Employee
             </label>
-            <select name="employee_id" class="w-full rounded-lg border-gray-300 focus:border-black focus:ring-black">
+            <select name="employee_id" class="w-full rounded-lg border-gray-300 focus:border-black focus:ring-black"
+              required>
               <option value="">Pilih employee</option>
               @foreach ($employees as $employee)
                 <option value="{{ $employee->id }}" @selected(old('employee_id', $employeeHistory->employee_id ?? '') == $employee->id)>
                   {{ $employee->nik }} — {{ $employee->nama }}
                 </option>
               @endforeach
+              @error('employee_id')
+                <p class="text-sm text-red-600 mt-1">{{ $message }}</p>
+              @enderror
             </select>
           </div>
 
@@ -115,6 +119,10 @@
               value="{{ old('tanggal_akhir_efektif', $employeeHistory->tanggal_akhir_efektif ?? '') }}">
           </div>
         </div>
+
+        <input type="hidden" name="current_flag" value="0">
+
+        <input type="checkbox" name="current_flag" value="1" @checked(old('current_flag', $employeeHistory->current_flag ?? true))>
 
         {{-- STATUS --}}
         <div class="flex items-center gap-3 mb-10">
