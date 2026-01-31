@@ -4,34 +4,33 @@ namespace App\Http\Controllers\Admin\Management;
 
 use App\Http\Controllers\Controller;
 use App\Models\Jabatan;
+use App\Models\Fungsi;
 use Illuminate\Http\Request;
 
 class JabatanController extends Controller
 {
     public function store(Request $request)
     {
-        $request->validate([
-            'jabatan' => 'required|string|max:150',
-            'fungsi_id' => 'required|exists:fungsis,id'
+        $data = $request->validate([
+            'jabatan' => 'required|string|max:150|unique:jabatans,jabatan',
+            'fungsis' => 'nullable|array',
+            'fungsis.*' => 'exists:fungsis,id',
         ]);
 
-        // Constraint: jabatan hanya bisa 1 kali dipakai
-        $exists = Jabatan::where('jabatan', $request->jabatan)
-            ->where('is_active', true)
-            ->exists();
+        $jabatan = Jabatan::create([
+            'jabatan' => $data['jabatan'],
+        ]);
 
-        if ($exists) {
-            return back()->withErrors([
-                'jabatan' => 'Jabatan sudah digunakan'
-            ]);
+        if (!empty($data['fungsis'])) {
+            Fungsi::whereIn('id', $data['fungsis'])
+                ->whereNull('jabatan_id') // proteksi bisnis rule
+                ->update([
+                    'jabatan_id' => $jabatan->id
+                ]);
         }
 
-        Jabatan::create([
-            'jabatan' => $request->jabatan,
-            'fungsi_id' => $request->fungsi_id,
-        ]);
-
-        return redirect()->route('admin.management.index', ['tab' => 'jabatan']);
+        return redirect()
+            ->route('admin.management.index', ['tab' => 'jabatan']);
     }
 
     public function update(Jabatan $jabatan, Request $request)

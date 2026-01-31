@@ -14,6 +14,10 @@ return new class extends Migration {
             $table->id();
             $table->string('fungsi');
             $table->boolean('is_active')->default(true);
+            $table->foreignId('jabatan_id')
+                ->nullable()
+                ->constrained('jabatans')
+                ->nullOnDelete();
             $table->timestamps();
         });
     }

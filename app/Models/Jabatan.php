@@ -7,10 +7,10 @@ use App\Models\Fungsi;
 
 class Jabatan extends Model
 {
-    protected $fillable = ['jabatan', 'fungsi_id', 'is_active',];
+    protected $fillable = ['jabatan', 'is_active',];
 
-    public function fungsi()
+    public function fungsis()
     {
-        return $this->belongsTo(Fungsi::class);
+        return $this->hasMany(Fungsi::class);
     }
 }
