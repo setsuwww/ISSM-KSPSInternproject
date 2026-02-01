@@ -11,6 +11,6 @@ class Jabatan extends Model
 
     public function fungsis()
     {
-        return $this->hasMany(Fungsi::class);
+        return $this->hasMany(Fungsi::class, 'jabatan_id');
     }
 }

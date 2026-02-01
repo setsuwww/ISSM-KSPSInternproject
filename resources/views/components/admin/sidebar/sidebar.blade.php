@@ -103,6 +103,13 @@
         ])>
           Management
         </a>
+
+        <a href="{{ route('admin.onsite.index') }}" @class([
+          'block px-4 py-2 rounded hover:bg-gray-100',
+          'bg-gray-100 font-semibold' => request()->routeIs('admin.onsite.*')
+        ])>
+          Onsite-HD
+        </a>
       </div>
     </div>
 

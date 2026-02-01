@@ -9,7 +9,7 @@ use App\Models\Employee;
 use App\Models\Role;
 use App\Models\Location;
 use App\Models\Jabatan;
-use App\Models\Fungsi;
+use Illuminate\Validation\Rule;
 
 use Illuminate\Http\Request;
 
@@ -33,7 +33,11 @@ class EmployeeHistoryController extends Controller
             'role_id' => 'required|exists:roles,id',
             'location_id' => 'required|exists:locations,id',
             'jabatan_id' => 'required|exists:jabatans,id',
-            'fungsi_id' => 'required|exists:fungsis,id',
+            'fungsi_id' => [
+                'required',
+                Rule::exists('fungsis', 'id')
+                    ->where('jabatan_id', $request->jabatan_id),
+            ],
             'tanggal_mulai_efektif' => 'required|date',
             'tanggal_akhir_efektif' => 'nullable|date',
             'current_flag' => 'boolean',
@@ -46,9 +50,17 @@ class EmployeeHistoryController extends Controller
             ->with('success', 'Data berhasil ditambahkan');
     }
 
-    public function show(EmployeeHistory $employeeHistory)
+    // AdminEmployeeHistoryController.php
+    public function show($employeeId)
     {
-        return view('admin.employee-history.show', compact('employeeHistory'));
+        $employee = Employee::with([
+            'histories.role',
+            'histories.location',
+            'histories.jabatan',
+            'histories.fungsi',
+        ])->findOrFail($employeeId);
+
+        return view('admin.employee-history.show', compact('employee'));
     }
 
     public function edit(EmployeeHistory $employeeHistory)
@@ -69,7 +81,11 @@ class EmployeeHistoryController extends Controller
             'role_id' => 'required|exists:roles,id',
             'location_id' => 'required|exists:locations,id',
             'jabatan_id' => 'required|exists:jabatans,id',
-            'fungsi_id' => 'required|exists:fungsis,id',
+            'fungsi_id' => [
+                'required',
+                Rule::exists('fungsis', 'id')
+                    ->where('jabatan_id', $request->jabatan_id),
+            ],
             'tanggal_mulai_efektif' => 'required|date',
             'tanggal_akhir_efektif' => 'nullable|date',
             'current_flag' => 'boolean',
@@ -97,8 +113,10 @@ class EmployeeHistoryController extends Controller
             'employees' => Employee::select('id', 'nik', 'nama')->get(),
             'roles' => Role::select('id', 'role')->get(),
             'locations' => Location::select('id', 'location')->get(),
-            'jabatans' => Jabatan::select('id', 'jabatan')->get(),
-            'fungsis' => Fungsi::select('id', 'fungsi')->get(),
+
+            'jabatans' => Jabatan::with('fungsis:id,fungsi,jabatan_id')
+                ->get(['id', 'jabatan']),
         ];
     }
+
 }

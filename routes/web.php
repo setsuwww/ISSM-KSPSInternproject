@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\Management\JabatanFungsiController;
+use App\Http\Controllers\Admin\OnsiteHDController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\AuthController;
@@ -89,7 +90,10 @@ Route::middleware(['auth', \App\Http\Middleware\CheckRole::class . ':Admin'])
                 ->name('locations.update');
             Route::delete('/locations/{location}', [LocationController::class, 'destroy'])
                 ->name('locations.destroy');
+
         });
+
+        Route::resource('onsite', OnsiteHDController::class);
 
         Route::prefix('management/jabatan-fungsi')->name('management.jabatan-fungsi.')->group(function () {
             Route::get('/', [JabatanFungsiController::class, 'index'])->name('index');
