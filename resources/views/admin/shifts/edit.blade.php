@@ -3,7 +3,7 @@
 @section('title', 'Edit Shift')
 
 @section('content')
-<div class="min-h-screen bg-white dark:bg-gray-900 sm:p-6 lg:p-8 transition-colors duration-300">
+<div class="content-container">
     <div class="mx-auto">
         <!-- Enhanced header -->
         <div class="mb-8">

@@ -66,7 +66,7 @@ class EmployeeHistoryController extends Controller
     public function edit(EmployeeHistory $employeeHistory)
     {
         return view(
-            'admin.employee-history.form',
+            'admin.employee-history.edit',
             array_merge(
                 $this->formData(),
                 compact('employeeHistory')

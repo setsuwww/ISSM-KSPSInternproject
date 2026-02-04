@@ -21,12 +21,12 @@
                     </div>
                 </div>
                 <a href="{{ route('admin.schedules.create') }}"
-                    class="inline-flex items-center px-6 py-3 bg-sky-600 text-white font-bold rounded-xl focus:outline-none focus:ring-4 focus:ring-sky-200">
+                    class="primary-button">
                     <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
                     </svg>
-                    Tambah Jadwal Baru
+                    Tambah Jadwal
                 </a>
             </div>
 
