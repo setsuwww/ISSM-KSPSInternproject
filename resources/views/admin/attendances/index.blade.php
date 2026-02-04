@@ -3,7 +3,7 @@
 @section('title', 'Manajemen Absensi')
 
 @section('content')
-    <div class="min-h-screen bg-white sm:p-6 lg:p-8">
+    <div class="content-container">
         <div class="mx-auto space-y-8">
             <!-- Enhanced Header Section -->
             <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
@@ -16,12 +16,12 @@
                         <p class="text-gray-400 mt-1">{{ $todayFormated }} - Kelola data absensi harian</p>
                     </div>
                 </div>
-                
+
                 <!-- Date Filter & Actions -->
                 <div class="flex items-center space-x-3">
                     <form method="GET" class="flex items-center space-x-3">
                         <div class="relative">
-                            <input type="date" name="date" value="{{ $today }}" 
+                            <input type="date" name="date" value="{{ $today }}"
                                 class="pl-10 pr-4 py-2 border-2 border-gray-200 rounded-xl focus:ring-4 focus:ring-sky-100 focus:border-sky-500 transition-all duration-200 bg-gray-50 focus:bg-white text-sm">
                             <i data-lucide="calendar" class="w-4 h-4 text-gray-400 absolute left-3 top-3"></i>
                         </div>
@@ -30,7 +30,7 @@
                             Filter
                         </button>
                     </form>
-                    
+
                     <a href="{{ route('admin.attendances.history') }}"
                        class="inline-flex items-center px-6 py-3 bg-gradient-to-r from-sky-500 to-sky-600 hover:from-sky-600 hover:to-sky-700 text-white font-bold rounded-xl transition-all transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-sky-200 shadow-sm hover:shadow-md">
                         <i data-lucide="history" class="w-5 h-5 mr-2"></i>
@@ -130,22 +130,22 @@
                                         Nama Karyawan
                                 </th>
                                 <th class="px-8 py-4 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">
-                                    
+
                                         Shift
                                 </th>
                                 <th class="px-8 py-4 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">
                                         Check In
                                 </th>
                                 <th class="px-8 py-4 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">
-                                    
+
                                         Check Out
                                 </th>
                                 <th class="px-8 py-4 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">
-                                    
+
                                         Status
                                 </th>
                                 <th class="px-8 py-4 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">
-                                    
+
                                         Keterangan
                                 </th>
                                 <th class="px-8 py-4 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">
@@ -172,7 +172,7 @@
                                         </div>
                                     </td>
                                     <td class="px-8 py-6 whitespace-nowrap">
-                                        <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium 
+                                        <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium
                                             @if($schedule->shift && $schedule->shift->category == 'Pagi') bg-yellow-100 text-yellow-800
                                             @elseif($schedule->shift && $schedule->shift->category == 'Siang') bg-orange-100 text-orange-800
                                             @elseif($schedule->shift && $schedule->shift->category == 'Malam') bg-indigo-100 text-indigo-800
@@ -257,7 +257,7 @@
                                             @if($permission)
                                                 <div class="text-gray-900 font-medium">{{ $permission->reason }}</div>
                                                 <div class="text-xs text-gray-500 mt-1">
-                                                    Status: 
+                                                    Status:
                                                     @if($permission->status === 'pending')
                                                         <span class="text-amber-600 font-medium">Menunggu Persetujuan</span>
                                                     @elseif($permission->status === 'approved')

@@ -124,3 +124,6 @@
 .input {
     @apply border border-gray-200 rounded-md shadow-xs outline-none focus:ring-2 ring-sky-100 focus:border focus:border-sky-300;
 }
+.content-container {
+    @apply min-h-screen bg-white sm:p-6 lg:p-8 rounded-lg border border-gray-200/60;
+}

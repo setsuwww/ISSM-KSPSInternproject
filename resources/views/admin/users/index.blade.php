@@ -3,7 +3,7 @@
 @section('title', 'Daftar Users')
 
 @section('content')
-    <div class="min-h-screen bg-white sm:p-6 lg:p-8">
+    <div class="content-container">
         <div class="mx-auto space-y-8">
             <!-- Enhanced Header Section -->
             <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">

@@ -3,7 +3,7 @@
 @section('title', 'Buat Users')
 
 @section('content')
-    <div class="min-h-screen bg-white sm:p-6 lg:p-8">
+    <div class="content-container">
         <div class="mx-auto">
             <div class="mb-8 flex items-center justify-between">
                 <div class="flex items-center gap-4 mb-3">
@@ -23,8 +23,8 @@
                     </div>
                 </div>
                 <a href="{{ route('admin.users.index') }}"
-                    class="bg-gray-50 hover:bg-gray-100 text-gray-600 font-bold py-4 px-8 rounded-xl text-center focus:outline-none focus:ring-4 focus:ring-gray-200 border border-gray-200 hover:border-gray-300">
-                    Kembali ke Daftar
+                    class="bg-gray-50 hover:bg-gray-100 text-gray-600 font-bold py-3 px-8 rounded-xl text-center focus:outline-none focus:ring-4 focus:ring-gray-200 border border-gray-200 hover:border-gray-300">
+                    Kembali
                 </a>
             </div>
 

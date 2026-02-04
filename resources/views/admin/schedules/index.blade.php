@@ -3,7 +3,7 @@
 @section('title', 'Ringkasan Jadwal Kerja')
 
 @section('content')
-    <div class="min-h-screen bg-white sm:p-6 lg:p-8">
+    <div class="content-container">
         <div class="mx-auto space-y-8">
             <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
                 <div class="flex items-center space-x-4">
@@ -61,7 +61,7 @@
                     bgColor="bg-gradient-to-br from-purple-100 to-indigo-100"
                     icon='<svg class="w-7 h-7 text-violet-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
-                    </svg>' 
+                    </svg>'
                 />
 
                 <x-stats-card title="Jadwal Minggu Ini" :count="$thisWeekSchedules" :subtitle="now()->startOfWeek()->translatedFormat('d M') .
@@ -69,14 +69,14 @@
                     bgColor="bg-gradient-to-br from-blue-100 to-sky-100"
                     icon='<svg class="w-7 h-7 text-sky-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-                    </svg>' 
+                    </svg>'
                 />
 
                 <x-stats-card title="Jadwal Hari Ini" :count="$todaySchedules" :subtitle="today()->translatedFormat('d F Y')"
                     bgColor="bg-gradient-to-br from-green-100 to-emerald-100"
                     icon='<svg class="w-7 h-7 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                    </svg>' 
+                    </svg>'
                 />
             </div>
 
@@ -176,7 +176,7 @@
                                     </td>
                                     <td class="px-8 py-6 whitespace-nowrap text-left">
                                         <div class="flex items-center justify-start space-x-3">
-                                            
+
                                             {{-- Tambahkan tombol history di sini --}}
                                             <a href="{{ route('admin.schedules.history', $summary['user_id']) }}"
                                             class="inline-flex items-center px-4 py-2 border border-gray-200 text-emerald-700 font-semibold text-sm rounded-lg">

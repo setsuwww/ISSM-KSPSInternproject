@@ -3,7 +3,7 @@
 @section('title', 'Edit Lokasi')
 
 @section('content')
-    <div class="min-h-screen bg-white sm:p-6 lg:p-8">
+    <div class="content-container">
         <div class="mx-auto">
             <!-- Header -->
             <div class="mb-8">
@@ -98,7 +98,7 @@
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                             d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
                                     </svg>
-                                    Kembali ke Daftar
+                                    Kembali
                                 </span>
                             </a>
                         </div>

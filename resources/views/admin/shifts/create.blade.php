@@ -26,11 +26,11 @@
                 <h2 class="text-xl font-semibold text-white">Informasi Shift</h2>
                 <p class="text-sky-100 dark:text-sky-200 mt-1">Lengkapi semua field yang diperlukan</p>
             </div>
-            
+
             <div class="p-8">
                 <form action="{{ route('admin.shifts.store') }}" method="POST" class="space-y-8" id="shiftForm">
                     @csrf
-                    
+
                     <!-- Enhanced form fields with consistent styling -->
                     <div class="space-y-3">
                         <label for="shift_name" class="block text-sm font-bold text-gray-800 dark:text-gray-200">
@@ -43,11 +43,11 @@
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"></path>
                                 </svg>
                             </div>
-                            <input 
-                                type="text" 
-                                name="shift_name" 
-                                id="shift_name" 
-                                class="block w-full pl-12 pr-4 py-4 border-2 border-gray-200 dark:border-gray-600 rounded-xl focus:ring-4 focus:ring-sky-100 dark:focus:ring-sky-900 focus:border-sky-500 dark:focus:border-sky-400 transition-all duration-200 bg-gray-50 dark:bg-gray-700 focus:bg-white dark:focus:bg-gray-600 text-gray-900 dark:text-gray-100" 
+                            <input
+                                type="text"
+                                name="shift_name"
+                                id="shift_name"
+                                class="block w-full pl-12 pr-4 py-4 border-2 border-gray-200 dark:border-gray-600 rounded-xl focus:ring-4 focus:ring-sky-100 dark:focus:ring-sky-900 focus:border-sky-500 dark:focus:border-sky-400 transition-all duration-200 bg-gray-50 dark:bg-gray-700 focus:bg-white dark:focus:bg-gray-600 text-gray-900 dark:text-gray-100"
                                 placeholder="Contoh: Shift A, Shift Security, Shift Cleaning"
                                 required
                             >
@@ -71,10 +71,10 @@
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                                 </svg>
                             </div>
-                            <select 
-                                name="category" 
-                                id="category" 
-                                class="block w-full pl-12 pr-10 py-4 border-2 border-gray-200 dark:border-gray-600 rounded-xl focus:ring-4 focus:ring-sky-100 dark:focus:ring-sky-900 focus:border-sky-500 dark:focus:border-sky-400 transition-all duration-200 bg-gray-50 dark:bg-gray-700 focus:bg-white dark:focus:bg-gray-600 text-gray-900 dark:text-gray-100 appearance-none cursor-pointer" 
+                            <select
+                                name="category"
+                                id="category"
+                                class="block w-full pl-12 pr-10 py-4 border-2 border-gray-200 dark:border-gray-600 rounded-xl focus:ring-4 focus:ring-sky-100 dark:focus:ring-sky-900 focus:border-sky-500 dark:focus:border-sky-400 transition-all duration-200 bg-gray-50 dark:bg-gray-700 focus:bg-white dark:focus:bg-gray-600 text-gray-900 dark:text-gray-100 appearance-none cursor-pointer"
                                 required
                             >
                                 <option value="" disabled selected>Pilih kategori waktu</option>
@@ -107,11 +107,11 @@
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                                 </svg>
                             </div>
-                            <input 
-                                type="time" 
-                                name="start_time" 
-                                id="start_time" 
-                                class="block w-full pl-12 pr-4 py-4 border-2 border-gray-200 dark:border-gray-600 rounded-xl focus:ring-4 focus:ring-sky-100 dark:focus:ring-sky-900 focus:border-sky-500 dark:focus:border-sky-400 transition-all duration-200 bg-gray-50 dark:bg-gray-700 focus:bg-white dark:focus:bg-gray-600 text-gray-900 dark:text-gray-100" 
+                            <input
+                                type="time"
+                                name="start_time"
+                                id="start_time"
+                                class="block w-full pl-12 pr-4 py-4 border-2 border-gray-200 dark:border-gray-600 rounded-xl focus:ring-4 focus:ring-sky-100 dark:focus:ring-sky-900 focus:border-sky-500 dark:focus:border-sky-400 transition-all duration-200 bg-gray-50 dark:bg-gray-700 focus:bg-white dark:focus:bg-gray-600 text-gray-900 dark:text-gray-100"
                                 required
                             >
                         </div>
@@ -134,11 +134,11 @@
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                                 </svg>
                             </div>
-                            <input 
-                                type="time" 
-                                name="end_time" 
-                                id="end_time" 
-                                class="block w-full pl-12 pr-4 py-4 border-2 border-gray-200 dark:border-gray-600 rounded-xl focus:ring-4 focus:ring-sky-100 dark:focus:ring-sky-900 focus:border-sky-500 dark:focus:border-sky-400 transition-all duration-200 bg-gray-50 dark:bg-gray-700 focus:bg-white dark:focus:bg-gray-600 text-gray-900 dark:text-gray-100" 
+                            <input
+                                type="time"
+                                name="end_time"
+                                id="end_time"
+                                class="block w-full pl-12 pr-4 py-4 border-2 border-gray-200 dark:border-gray-600 rounded-xl focus:ring-4 focus:ring-sky-100 dark:focus:ring-sky-900 focus:border-sky-500 dark:focus:border-sky-400 transition-all duration-200 bg-gray-50 dark:bg-gray-700 focus:bg-white dark:focus:bg-gray-600 text-gray-900 dark:text-gray-100"
                                 required
                             >
                         </div>
@@ -152,8 +152,8 @@
 
                     <!-- Enhanced action buttons to match users module -->
                     <div class="flex flex-col sm:flex-row gap-4 pt-8 border-t border-gray-200 dark:border-gray-700">
-                        <button 
-                            type="submit" 
+                        <button
+                            type="submit"
                             class="flex-1 bg-gradient-to-r from-sky-500 to-sky-600 hover:from-sky-600 hover:to-sky-700 text-white font-bold py-4 px-8 rounded-xl transition-all duration-200 transform hover:scale-[1.02] focus:outline-none focus:ring-4 focus:ring-sky-200 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed"
                             id="submitBtn"
                         >
@@ -168,15 +168,15 @@
                                 </svg>
                             </span>
                         </button>
-                        <a 
-                            href="{{ route('admin.shifts.index') }}" 
+                        <a
+                            href="{{ route('admin.shifts.index') }}"
                             class="flex-1 bg-gray-100 hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-300 font-bold py-4 px-8 rounded-xl transition-all duration-200 text-center focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-600 border-2 border-gray-200 dark:border-gray-600 hover:border-gray-300 dark:hover:border-gray-500"
                         >
                             <span class="flex items-center justify-center gap-3">
                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
                                 </svg>
-                                Kembali ke Daftar
+                                Kembali
                             </span>
                         </a>
                     </div>
@@ -191,7 +191,7 @@ document.getElementById('shiftForm').addEventListener('submit', function() {
     const submitBtn = document.getElementById('submitBtn');
     const submitText = document.getElementById('submitText');
     const submitSpinner = document.getElementById('submitSpinner');
-    
+
     submitBtn.disabled = true;
     submitText.textContent = 'Menyimpan...';
     submitSpinner.classList.remove('hidden');

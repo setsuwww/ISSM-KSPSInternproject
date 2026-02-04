@@ -3,7 +3,7 @@
 @section('title', 'Riwayat Absensi')
 
 @section('content')
-<div class="min-h-screen bg-white sm:p-6 lg:p-8">
+<div class="content-container">
     <div class="mx-auto space-y-8">
         <!-- Enhanced Header Section -->
         <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
@@ -27,7 +27,7 @@
                 </h2>
                 <p class="text-sky-100 mt-1">Pilih tanggal dan cari karyawan</p>
             </div>
-            
+
             <div class="p-8">
                 <form method="GET" class="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <div class="space-y-3">
@@ -35,10 +35,10 @@
                             <i data-lucide="calendar" class="w-4 h-4 inline mr-1"></i>
                             Tanggal
                         </label>
-                        <input type="date" name="date" id="date" value="{{ $date }}" 
+                        <input type="date" name="date" id="date" value="{{ $date }}"
                             class="block w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-4 focus:ring-sky-100 focus:border-sky-500 transition-all duration-200 bg-gray-50 focus:bg-white">
                     </div>
-                    
+
                     <div class="space-y-3">
                         <label for="search" class="block text-sm font-bold text-gray-800">
                             <i data-lucide="search" class="w-4 h-4 inline mr-1"></i>
@@ -47,7 +47,7 @@
                         <input type="text" name="search" id="search" value="{{ $search }}" placeholder="Masukkan nama karyawan..."
                             class="block w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-4 focus:ring-sky-100 focus:border-sky-500 transition-all duration-200 bg-gray-50 focus:bg-white">
                     </div>
-                    
+
                     <div class="flex items-end">
                         <button type="submit" class="w-full inline-flex items-center justify-center px-6 py-3 bg-sky-600 hover:bg-sky-700 text-white font-bold rounded-xl transition-all transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-sky-200 shadow-sm hover:shadow-md">
                             <i data-lucide="search" class="w-5 h-5 mr-2"></i>
@@ -66,7 +66,7 @@
                     Data Absensi Karyawan
                 </h3>
             </div>
-            
+
             <div class="overflow-x-auto">
                 <table class="min-w-full divide-y divide-gray-200">
                     <thead class="bg-gray-50">

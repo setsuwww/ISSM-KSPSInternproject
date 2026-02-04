@@ -18,7 +18,7 @@
           <th class="p-3 text-left">Mulai</th>
           <th class="p-3 text-left">Akhir</th>
           <th class="p-3 text-left">Status</th>
-          <th class="p-3 text-left"></th>
+          <th class="p-3 text-left">Aksi</th>
         </tr>
       </thead>
       <tbody>

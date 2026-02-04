@@ -3,7 +3,7 @@
 @section('title', 'Kalender Jadwal')
 
 @section('content')
-    <div class="min-h-screen bg-white sm:p-6 lg:p-8">
+    <div class="content-container">
         <div class="mx-auto space-y-8">
 
             {{-- Header --}}

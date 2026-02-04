@@ -3,7 +3,7 @@
 @section('title', 'Edit Jadwal')
 
 @section('content')
-    <div class="min-h-screen bg-white sm:p-6 lg:p-8">
+    <div class="content-container">
         <div class="mx-auto">
             <!-- Header -->
             <div class="mb-8">
@@ -198,7 +198,7 @@
                                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
                                     </svg>
-                                    Kembali ke Daftar
+                                    Kembali
                                 </span>
                             </a>
                         </div>
@@ -216,7 +216,7 @@
             const yearSelect = document.getElementById("calendarYear");
             const userSelect = document.getElementById("user_id");
             const calendarContainer = document.getElementById("calendarDays");
-            
+
             let currentCalendarData = null;
             let currentExistingSchedules = {};
 
@@ -246,7 +246,7 @@
                 const month = monthSelect.value;
                 const year = yearSelect.value;
                 const loadingIndicator = document.getElementById('loadingIndicator');
-                
+
                 if (!userId || !month || !year) {
                     currentExistingSchedules = {};
                     if (currentCalendarData) {
@@ -291,7 +291,7 @@
                     const existingSchedulesForDay = currentExistingSchedules[day] || [];
                     const shift1Selected = existingSchedulesForDay[0] ? existingSchedulesForDay[0].shift_id : '';
                     const shift2Selected = existingSchedulesForDay[1] ? existingSchedulesForDay[1].shift_id : '';
-                    
+
                     html += `
                     <div class="p-2 bg-white border border-gray-100 rounded-lg flex flex-col items-center hover:shadow-sm transition-shadow duration-200">
                         <span class="text-sm font-semibold text-gray-700 mb-1">${day}</span>
@@ -334,10 +334,10 @@
                 loadExistingSchedules();
             });
             if (userSelect) userSelect.addEventListener("change", loadExistingSchedules);
-            
+
             // Initial loads - untuk edit, langsung load dengan user yang sudah dipilih
             loadCalendar();
-            
+
             // Untuk mode edit, pastikan existing schedules dimuat setelah kalender siap
             setTimeout(() => {
                 if (userSelect && userSelect.value) {
@@ -358,13 +358,13 @@
             if (!shiftId) return alert("ID shift untuk " + type + " belum diatur!");
 
             // Apply to specific shift position (1 or 2)
-            const selector = shiftPosition === 1 
+            const selector = shiftPosition === 1
                 ? '.shift-dropdown-1'
                 : '.shift-dropdown-2';
-            
+
             document.querySelectorAll(selector).forEach(select => {
                 select.value = shiftId;
-                
+
                 // If this is a first dropdown, update the corresponding second dropdown
                 if (shiftPosition === 1) {
                     const day = select.getAttribute('data-day');
@@ -388,22 +388,22 @@
         function updateSecondDropdown(day) {
             const firstDropdown = document.querySelector(`select[data-day="${day}"][data-shift-position="1"]`);
             const secondDropdown = document.querySelector(`select[data-day="${day}"][data-shift-position="2"]`);
-            
+
             if (!firstDropdown || !secondDropdown) return;
-            
+
             const selectedShiftId = firstDropdown.value;
             const currentSecondValue = secondDropdown.value;
-            
+
             // Get all original options from the template
             const allShiftOptions = [
                 @foreach ($shifts as $shift)
                     { id: "{{ $shift->id }}", name: "{{ $shift->shift_name }}" },
                 @endforeach
             ];
-            
+
             // Clear second dropdown
             secondDropdown.innerHTML = '<option value="">-- Shift 2 --</option>';
-            
+
             // Add options that are not selected in first dropdown
             allShiftOptions.forEach(shift => {
                 if (shift.id !== selectedShiftId) {
@@ -411,16 +411,16 @@
                     option.value = shift.id;
                     option.textContent = shift.name;
                     option.setAttribute('data-shift-name', shift.name);
-                    
+
                     // Restore previous selection if it's still valid
                     if (shift.id === currentSecondValue) {
                         option.selected = true;
                     }
-                    
+
                     secondDropdown.appendChild(option);
                 }
             });
-            
+
             // If the current second dropdown value is now invalid, clear it
             if (selectedShiftId === currentSecondValue) {
                 secondDropdown.value = "";
@@ -431,7 +431,7 @@
         document.getElementById('scheduleForm')?.addEventListener('submit', function() {
             const submitBtn = document.getElementById('submitBtn');
             const submitText = document.getElementById('submitText');
-            
+
             submitBtn.disabled = true;
             submitText.innerHTML = `
                 <svg class="w-5 h-5 animate-spin mr-2" fill="none" viewBox="0 0 24 24">

@@ -3,7 +3,7 @@
 @section('title', 'Lokasi Terdaftar')
 
 @section('content')
-    <div class="min-h-screen bg-white sm:p-6 lg:p-8">
+    <div class="content-container">
         <div class="mx-auto">
             <!-- Header -->
             <div class="mb-8">

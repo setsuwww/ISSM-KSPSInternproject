@@ -3,7 +3,7 @@
 @section('title', 'Detail Jadwal')
 
 @section('content')
-    <div class="min-h-screen bg-white sm:p-6 lg:p-8">
+    <div class="content-container">
         <div class="mx-auto space-y-8">
             <!-- Header -->
             <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
@@ -390,13 +390,13 @@
                 <form id="swapForm" method="POST">
                     @csrf
                     <input type="hidden" id="scheduleId" name="schedule_id" value="">
-                    
+
                     <!-- Step 1: Select User -->
                     <div class="mb-6">
                         <label for="targetUser" class="block text-sm font-bold text-gray-700 mb-2">
                             Pilih Karyawan untuk Swap:
                         </label>
-                        <select id="targetUser" name="target_user_id" onchange="loadUserSchedules(this.value)" 
+                        <select id="targetUser" name="target_user_id" onchange="loadUserSchedules(this.value)"
                                 class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-colors">
                             <option value="">-- Pilih Karyawan --</option>
                         </select>
@@ -414,7 +414,7 @@
 
                     <!-- Action Buttons -->
                     <div class="flex items-center justify-end space-x-3 pt-4 border-t border-gray-200">
-                        <button type="button" onclick="closeSwapModal()" 
+                        <button type="button" onclick="closeSwapModal()"
                                 class="px-6 py-3 bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold rounded-lg transition-colors">
                             Batal
                         </button>
@@ -436,16 +436,16 @@
             document.getElementById('currentUser').textContent = userName;
             document.getElementById('currentShift').textContent = shiftName;
             document.getElementById('currentDate').textContent = scheduleDate;
-            
+
             // Reset form
             document.getElementById('targetUser').value = '';
             document.getElementById('targetScheduleContainer').classList.add('hidden');
             document.getElementById('swapButton').disabled = true;
             selectedTargetSchedule = null;
-            
+
             // Load users
             loadUsers();
-            
+
             document.getElementById('swapModal').classList.remove('hidden');
         }
 
@@ -459,7 +459,7 @@
                 .then(data => {
                     const select = document.getElementById('targetUser');
                     select.innerHTML = '<option value="">-- Pilih Karyawan --</option>';
-                    
+
                     data.users.forEach(user => {
                         const option = document.createElement('option');
                         option.value = user.id;
@@ -484,7 +484,7 @@
                 .then(data => {
                     const container = document.getElementById('schedulesList');
                     container.innerHTML = '';
-                    
+
                     if (data.schedules.length === 0) {
                         container.innerHTML = '<p class="text-gray-500 text-center py-4">Tidak ada jadwal tersedia untuk karyawan ini</p>';
                     } else {
@@ -492,7 +492,7 @@
                             const scheduleDiv = document.createElement('div');
                             scheduleDiv.className = 'border border-gray-200 rounded-lg p-3 hover:bg-gray-50 cursor-pointer transition-colors';
                             scheduleDiv.onclick = () => selectTargetSchedule(schedule.id, scheduleDiv);
-                            
+
                             scheduleDiv.innerHTML = `
                                 <div class="flex items-center justify-between">
                                     <div class="flex items-center space-x-3">
@@ -516,11 +516,11 @@
                                     <div class="text-sm text-gray-500">${schedule.time_range}</div>
                                 </div>
                             `;
-                            
+
                             container.appendChild(scheduleDiv);
                         });
                     }
-                    
+
                     document.getElementById('targetScheduleContainer').classList.remove('hidden');
                 })
                 .catch(error => {
@@ -535,28 +535,28 @@
                 div.classList.remove('bg-green-50', 'border-green-300');
                 div.classList.add('border-gray-200');
             });
-            
+
             // Add selection to clicked element
             element.classList.remove('border-gray-200');
             element.classList.add('bg-green-50', 'border-green-300');
-            
+
             selectedTargetSchedule = scheduleId;
             document.getElementById('swapButton').disabled = false;
         }
 
         document.getElementById('swapForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            
+
             if (!selectedTargetSchedule) {
                 alert('Pilih jadwal yang akan ditukar');
                 return;
             }
-            
+
             const formData = new FormData();
             formData.append('_token', document.querySelector('input[name="_token"]').value);
             formData.append('schedule_id', document.getElementById('scheduleId').value);
             formData.append('target_schedule_id', selectedTargetSchedule);
-            
+
             fetch('/admin/schedules/swap', {
                 method: 'POST',
                 body: formData

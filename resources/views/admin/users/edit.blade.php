@@ -3,7 +3,7 @@
 @section('title', 'Edit User')
 
 @section('content')
-    <div class="min-h-screen bg-white sm:p-6 lg:p-8">
+    <div class="content-container">
         <div class="mx-auto">
             <!-- Header -->
             <div class="mb-8">
@@ -97,8 +97,8 @@
                             <label for='akses_role' class="block text-sm font-bold text-gray-800">
                                 Role Pengguna <span class="text-red-500 ml-1">*</span>
                             </label>
-                            <select name='akses_role' id='akses_role' class="block w-full pl-4 pr-10 py-4 border-2 border-gray-200 rounded-xl 
-                                           focus:ring-4 focus:ring-sky-100 focus:border-sky-500 transition-all 
+                            <select name='akses_role' id='akses_role' class="block w-full pl-4 pr-10 py-4 border-2 border-gray-200 rounded-xl
+                                           focus:ring-4 focus:ring-sky-100 focus:border-sky-500 transition-all
                                            duration-200 bg-gray-50 focus:bg-white text-gray-900 cursor-pointer" required>
                                 @php
                                     $currentRole = strtolower(old('akses_role', $user->akses_role));
@@ -135,7 +135,7 @@
                             </button>
                             <a href="{{ route('admin.users.index') }}"
                                 class="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold py-4 px-8 rounded-xl transition-all duration-200 text-center border-2 border-gray-200 hover:border-gray-300">
-                                Kembali ke Daftar
+                                Kembali
                             </a>
                         </div>
                     </form>
