@@ -106,6 +106,7 @@ class EmployeeController extends Controller
         // import excel untuk scheduling system
         // export excel
         // request reset device, masukin nama device
+        // export absensi satu page / per user
 
         return redirect()
             ->route('admin.employees.index')
